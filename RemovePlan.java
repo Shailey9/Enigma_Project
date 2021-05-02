@@ -1,8 +1,17 @@
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author sahil jain
  */
 public class RemovePlan extends javax.swing.JFrame {
+    Connection con = MasterPage.con;
+    Statement stmt = MasterPage.stmt;
     public RemovePlan() {
         initComponents();
     }
@@ -100,11 +109,31 @@ public class RemovePlan extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+          this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        try {
+            String pid = jTextField1.getText().trim();
+            String pname = jTextField2.getText().trim();
+            if(pid.length() ==0 || pname.length() ==0){
+                Wrong w = new Wrong("All details are Mandatory...");
+                w.setVisible(true);
+            }else{
+              String sql = "delete from plan where id = "+pid+" and PLAN_NAME = '"+pname+"' ";
+            int i = stmt.executeUpdate(sql);
+            if( i == 0 ){
+                Wrong w = new Wrong("Check your Inputs...");
+                w.setVisible(true);
+            }else{
+               Done d = new Done();
+               d.setVisible(true);
+               this.dispose();
+            }
+           }
+        } catch (SQLException ex) {
+            Logger.getLogger(RemovePlan.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void main(String args[]) {

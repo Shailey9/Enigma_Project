@@ -2,6 +2,7 @@
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -231,6 +232,11 @@ public class Home extends javax.swing.JFrame {
         jLabel12.setText("  Premium Plans.");
         jLabel12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel12MouseClicked(evt);
+            }
+        });
         jPanel5.add(jLabel12);
         jLabel12.setBounds(300, 110, 200, 34);
 
@@ -247,6 +253,11 @@ public class Home extends javax.swing.JFrame {
         jLabel14.setText("  Basic Plans.");
         jLabel14.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
+            }
+        });
         jPanel5.add(jLabel14);
         jLabel14.setBounds(90, 110, 170, 34);
 
@@ -297,12 +308,22 @@ public class Home extends javax.swing.JFrame {
                obj1.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        BasicPlan b = new BasicPlan();
+        b.show();
+    }//GEN-LAST:event_jLabel14MouseClicked
+
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+         BasicPlan1 b = new BasicPlan1();
+         b.show();
+    }//GEN-LAST:event_jLabel12MouseClicked
+
     public static void main(String args[]) {
           java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
                     MasterPage m = new MasterPage();
-                    m.display();
+                    ResultSet rs = m.display();
                     obj =  new Home();
                     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
                     obj.setSize(d.width, d.height);
@@ -316,6 +337,12 @@ public class Home extends javax.swing.JFrame {
                     sql1="INSERT INTO plan(PLAN_NAME,DURATION,AMT,FIRST,SECOND,THIRD)VALUES('LOW CARBS','1 MONTH',500,'BREAKFAST:SPINACH-MUSHROOM SCRAMBLED , SPROUTS AND FRUITS  ,   LUNCH:CHICKEN SALAD, BROWN RICE AND VEGGIES  ,   DINNER:ROASTED TUNA, CHICKEN GRAVY AND RICE','BREAKFAST:WHEY PROTIEN,WALNUTS AND DATES     ,   LUNCH:CAULIFLOWER SOUP,PULSES AND VEGGIES      , DINNER:TANDOORI GRILLED TOFU WITH RED PEPPER AND BROCCOLI SALMON','BREAKFAST:EGG HALF FRY AND SPROUTS	   ,   LUNCH:ALMOND VEGETABLE STIR FRY, CHICKEN SALAD    ,    DINNER:CHICKEN BREAST, ROASTED CHICKEN, TUNA AND CRAB')";
                     stmt.executeUpdate(sql1);
                     sql1 = "INSERT INTO plan(PLAN_NAME,DURATION,AMT,FIRST,SECOND,THIRD)VALUES('HIGH CARBS','1 MONTH',500,'BREAKFAST:PANEER SANDWICH OR TOASTER,PARANTHA	,  LUNCH:ROTI AND PULSES, VEGGIES	, 	DINNER:FRIED CHICKEN WITH A ROTI OR ANY SEA FOOD','BREAKFAST:CHICKENPEAS,OMELLET OR SKIP	 ,   LUNCH:LENTIN,PULSES AND VEGGIES	,  DINNER:BROWN RICE,ROTI AND CHICKEN','BREAKFAST:FRUITS,OATS 	,	LUNCH:	WHITE RICE WITH PULSES,SALADS	,	DINNER:EAT ANYTHING' ) ;";
+                  
+                    rs = stmt.executeQuery("select * from admin");
+                    while(rs.next()){
+                        Sendmail2.MyAccount = rs.getString("email").trim();
+                        Sendmail2.Password = rs.getString("epass").trim();
+                    }  
                 } catch (SQLException ex) {
                     Wrong w = new Wrong(ex.getMessage());
                     w.setVisible(true);

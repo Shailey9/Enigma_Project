@@ -11,8 +11,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 public class Sendmail2 {
-    static String MyAccount = "shaileyjain8872@gmail.com";
-    static String Password = "#donthavepassword";
+    static String MyAccount = "";
+    static String Password = "";
     public static int smail(String r, String sub,String mymess)
     {
        Properties p = new Properties();

@@ -1,16 +1,25 @@
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author sahil jain
  */
 public class UserEnd extends javax.swing.JFrame {
+    Connection con = MasterPage.con;
+    Statement stmt = MasterPage.stmt;
     static String name="";
     public UserEnd() {
         initComponents();
         jLabel1.setText(name);
+        Connection();
     }
 
     @SuppressWarnings("unchecked")
@@ -21,7 +30,8 @@ public class UserEnd extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -56,11 +66,16 @@ public class UserEnd extends javax.swing.JFrame {
         jPanel6.add(jLabel6);
         jLabel6.setBounds(20, 30, 440, 40);
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(102, 102, 0));
-        jLabel12.setText("Breakfast");
-        jPanel6.add(jLabel12);
-        jLabel12.setBounds(50, 100, 80, 20);
+        jTextArea1.setBackground(new java.awt.Color(0, 204, 204));
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(51, 51, 51));
+        jTextArea1.setRows(5);
+        jTextArea1.setBorder(null);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jPanel6.add(jScrollPane1);
+        jScrollPane1.setBounds(30, 90, 630, 230);
 
         jPanel3.add(jPanel6);
         jPanel6.setBounds(60, 90, 700, 350);
@@ -115,11 +130,21 @@ public class UserEnd extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/EatHealthyGif.gif"))); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
         jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, -1, 224));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ExercisesGif.gif"))); // NOI18N
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
         jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 504, 250));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -180,9 +205,22 @@ public class UserEnd extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public void Connection(){
+         String sql = "select * from plan where amt <> "+00+" ";
+        try {
+            ResultSet rs = stmt.executeQuery(sql);
+            String s = "";
+            while(rs.next())
+                jTextArea1.setText("Plan Name : "+rs.getString("plan_name")+"\n_____________________________________________________\n"+"\nDuration :"+rs.getString("duration")+"\nAmount : "+rs.getString("amt")+"\n3 day Meal :"+rs.getString("first")+"\n"+"2 day Meal :"+rs.getString("second")+"\n"+"2 day Meal :"+rs.getString("third")+"\n\n");
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(BasicPlan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+    }
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        //jPopupMenu2.show(obj, evt.getXOnScreen(), evt.getY()+200);
+                SetupProfile sp = new SetupProfile();
+                sp.setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
@@ -191,6 +229,16 @@ public class UserEnd extends javax.swing.JFrame {
          obj1.setVisible(true);
          this.dispose();
     }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        BasicPlan b = new BasicPlan();
+        b.setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        BasicPlan1 b = new BasicPlan1();
+        b.setVisible(true);
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -208,7 +256,6 @@ public class UserEnd extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -223,5 +270,7 @@ public class UserEnd extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

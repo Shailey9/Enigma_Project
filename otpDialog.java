@@ -92,7 +92,9 @@ public class otpDialog extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if( OTP.equals(jTextField1.getText().trim()) ){
+        if( OTP.trim().equals(jTextField1.getText().trim()) ){
+                ForgotPass.table = table;
+                ForgotPass.email = email;
                 ForgotPass obj1 = new ForgotPass();
                 obj1.setVisible(true);
                 this.dispose();

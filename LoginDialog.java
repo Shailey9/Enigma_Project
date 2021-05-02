@@ -11,6 +11,7 @@ public class LoginDialog extends javax.swing.JFrame {
     Home obj = Home.obj;
     Connection con = MasterPage.con;
     Statement stmt;
+    private static String OTP; 
     public LoginDialog() {
         initComponents();
         try {
@@ -19,6 +20,11 @@ public class LoginDialog extends javax.swing.JFrame {
             Wrong w = new Wrong(ex.getMessage());
             w.setVisible(true);
         }
+        OTP = new Random().nextInt(50)+"";
+                               while(OTP.length()<4){
+                                  OTP += new Random().nextInt(9); 
+                               }  
+                  
     }
 
     @SuppressWarnings("unchecked")
@@ -192,11 +198,6 @@ public class LoginDialog extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void SendMail(String email, String table){
-                  jLabel7.setText("Wait...Sending Email.");
-                  String OTP = new Random().nextInt(50)+email.length()+"";
-                               while(OTP.length()<4){
-                                  OTP += '9'; 
-                               }  
                   String message = "<!doctype html>\n" +
 "<html lang=\"en\">\n" +
 "  <head>\n" +
@@ -259,9 +260,10 @@ public class LoginDialog extends javax.swing.JFrame {
 "    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf\" crossorigin=\"anonymous\"></script>\n" +
 "  </body>\n" +
 "</html>";
-                  otpDialog.OTP = OTP;
+                  
                   int valid = Sendmail2.smail(email, "CorEnergy:Password Reset", message);
                   if(valid == 1){
+                      otpDialog.OTP = OTP;
                       otpDialog.oobj = this;
                       otpDialog.email = email;
                       otpDialog.table = table;

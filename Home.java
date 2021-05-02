@@ -1,13 +1,20 @@
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Home extends javax.swing.JFrame {
-    
+    Connection con = MasterPage.con;
+    static Statement stmt;
     static Home obj;
-    public Home() {
+    public Home() throws SQLException {
         initComponents();
+        connection();
+    }
+    void connection(){
+        stmt = MasterPage.stmt;
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -27,6 +34,9 @@ public class Home extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -132,14 +142,14 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Constantia", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Constantia", 0, 36)); // NOI18N
         jLabel1.setText("Username");
         jLabel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 102, 102)));
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -152,28 +162,53 @@ public class Home extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(51, 255, 51));
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jLabel17.setFont(new java.awt.Font("Castellar", 0, 36)); // NOI18N
+        jLabel17.setText("Commit to");
+
+        jLabel16.setFont(new java.awt.Font("Castellar", 0, 36)); // NOI18N
+        jLabel16.setText("BE");
+
+        jLabel18.setFont(new java.awt.Font("Castellar", 0, 100)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel18.setText("FIT..");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(218, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addContainerGap(200, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(178, 178, 178))
+                .addGap(175, 175, 175))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel18))
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(90, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(183, 183, 183)
-                        .addComponent(jLabel1)))
-                .addContainerGap(162, Short.MAX_VALUE))
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel1))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56))
         );
 
         jPanel1.add(jPanel4);
@@ -227,7 +262,7 @@ public class Home extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setLayout(null);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\STAR COMPUTER\\Desktop\\Yoga.gif")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Yoga.gif"))); // NOI18N
         jPanel6.add(jLabel8);
         jLabel8.setBounds(50, 200, 480, 250);
 
@@ -249,7 +284,7 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-         jPopupMenu2.show(obj, evt.getXOnScreen(), evt.getY()+240);
+         jPopupMenu2.show(obj, evt.getXOnScreen()-evt.getX()+10, evt.getYOnScreen()+20);
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -265,10 +300,26 @@ public class Home extends javax.swing.JFrame {
     public static void main(String args[]) {
           java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               obj =  new Home();
-               Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-               obj.setSize(d.width, d.height);
-               obj.setVisible(true);
+                try {
+                    MasterPage m = new MasterPage();
+                    m.display();
+                    obj =  new Home();
+                    Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+                    obj.setSize(d.width, d.height);
+                    obj.setVisible(true);
+                    String sql1 = "INSERT INTO plan(PLAN_NAME,DURATION,AMT,FIRST,SECOND,THIRD)VALUES('LOWCARBS','1 WEEK',00,'BREAKFAST:SPINACH-MUSHROOM SCRAMBLED EGGS,LUNCH:CHICKEN SALAD ,DINNER:ROASTED TUNA','BREAKFAST:OATMEAL AND APPLES  LUNCH:CAULIFLOWER SOUP DINNER:TANDOORI GRILLED TOFU WITH RED PEPPER AND BROCCOLI','BREAKFAST:FRUITS     LUNCH:ALMOND VEGETABLE STIR FRY     DINNER:CHICKEN BREAST');";
+                    stmt.executeUpdate(sql1);
+                    sql1 = "INSERT INTO plan(PLAN_NAME,DURATION,AMT,FIRST,SECOND,THIRD) VALUES('HIGH CARBS','1WEEK',00,'BREAKFAST:PANEER SANDWICH AND TOASTER ,    LUNCH:ROTI AND PULSES ,    DINNER:FRIED CHICKEN WITH A ROTI','BREAKFAST:CHICKENPEAS   ,  LUNCH:LENTILS   ,  DINNER:BROWN RICE','BREAKFAST:FRUITS  ,   LUNCH:WHITE RICE WITH PULSES     DINNER:EAT ANYTHING');";
+                    stmt.executeUpdate(sql1);
+                    sql1 = "INSERT INTO plan(PLAN_NAME,DURATION,AMT,FIRST,SECOND,THIRD) VALUES('HIGH PROTIEN','1 WEEK',00,'BREAKFAST:6EGG WHITES  , LUNCH:ROTI AND VEGGIES   ,  DINNER:VEG SALAD','BREAKFAST:SPROUTS   ,  LUNCH:BROWN RICE   ,  DINNER:ROASTED CHICKEN','BREAKFAST:FRUITS  ,   LUNCH:ROTI AND PULSES  ,   DINNER:SKIP');";
+                    stmt.executeUpdate(sql1);
+                    sql1="INSERT INTO plan(PLAN_NAME,DURATION,AMT,FIRST,SECOND,THIRD)VALUES('LOW CARBS','1 MONTH',500,'BREAKFAST:SPINACH-MUSHROOM SCRAMBLED , SPROUTS AND FRUITS  ,   LUNCH:CHICKEN SALAD, BROWN RICE AND VEGGIES  ,   DINNER:ROASTED TUNA, CHICKEN GRAVY AND RICE','BREAKFAST:WHEY PROTIEN,WALNUTS AND DATES     ,   LUNCH:CAULIFLOWER SOUP,PULSES AND VEGGIES      , DINNER:TANDOORI GRILLED TOFU WITH RED PEPPER AND BROCCOLI SALMON','BREAKFAST:EGG HALF FRY AND SPROUTS	   ,   LUNCH:ALMOND VEGETABLE STIR FRY, CHICKEN SALAD    ,    DINNER:CHICKEN BREAST, ROASTED CHICKEN, TUNA AND CRAB')";
+                    stmt.executeUpdate(sql1);
+                    sql1 = "INSERT INTO plan(PLAN_NAME,DURATION,AMT,FIRST,SECOND,THIRD)VALUES('HIGH CARBS','1 MONTH',500,'BREAKFAST:PANEER SANDWICH OR TOASTER,PARANTHA	,  LUNCH:ROTI AND PULSES, VEGGIES	, 	DINNER:FRIED CHICKEN WITH A ROTI OR ANY SEA FOOD','BREAKFAST:CHICKENPEAS,OMELLET OR SKIP	 ,   LUNCH:LENTIN,PULSES AND VEGGIES	,  DINNER:BROWN RICE,ROTI AND CHICKEN','BREAKFAST:FRUITS,OATS 	,	LUNCH:	WHITE RICE WITH PULSES,SALADS	,	DINNER:EAT ANYTHING' ) ;";
+                } catch (SQLException ex) {
+                    Wrong w = new Wrong(ex.getMessage());
+                    w.setVisible(true);
+                }
             }
         });
     }
@@ -281,6 +332,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

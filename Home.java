@@ -328,6 +328,12 @@ public class Home extends javax.swing.JFrame {
                     Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
                     obj.setSize(d.width, d.height);
                     obj.setVisible(true);
+                    rs = stmt.executeQuery("select * from plan where upper(plan_name) = upper('HIGH CARBS') ");
+                    int i=0;
+                    while(rs.next()){
+                        i++;
+                    }
+                    if(i==0){
                     String sql1 = "INSERT INTO plan(PLAN_NAME,DURATION,AMT,FIRST,SECOND,THIRD)VALUES('LOWCARBS','1 WEEK',00,'BREAKFAST:SPINACH-MUSHROOM SCRAMBLED EGGS,LUNCH:CHICKEN SALAD ,DINNER:ROASTED TUNA','BREAKFAST:OATMEAL AND APPLES  LUNCH:CAULIFLOWER SOUP DINNER:TANDOORI GRILLED TOFU WITH RED PEPPER AND BROCCOLI','BREAKFAST:FRUITS     LUNCH:ALMOND VEGETABLE STIR FRY     DINNER:CHICKEN BREAST');";
                     stmt.executeUpdate(sql1);
                     sql1 = "INSERT INTO plan(PLAN_NAME,DURATION,AMT,FIRST,SECOND,THIRD) VALUES('HIGH CARBS','1WEEK',00,'BREAKFAST:PANEER SANDWICH AND TOASTER ,    LUNCH:ROTI AND PULSES ,    DINNER:FRIED CHICKEN WITH A ROTI','BREAKFAST:CHICKENPEAS   ,  LUNCH:LENTILS   ,  DINNER:BROWN RICE','BREAKFAST:FRUITS  ,   LUNCH:WHITE RICE WITH PULSES     DINNER:EAT ANYTHING');";
@@ -337,13 +343,15 @@ public class Home extends javax.swing.JFrame {
                     sql1="INSERT INTO plan(PLAN_NAME,DURATION,AMT,FIRST,SECOND,THIRD)VALUES('LOW CARBS','1 MONTH',500,'BREAKFAST:SPINACH-MUSHROOM SCRAMBLED , SPROUTS AND FRUITS  ,   LUNCH:CHICKEN SALAD, BROWN RICE AND VEGGIES  ,   DINNER:ROASTED TUNA, CHICKEN GRAVY AND RICE','BREAKFAST:WHEY PROTIEN,WALNUTS AND DATES     ,   LUNCH:CAULIFLOWER SOUP,PULSES AND VEGGIES      , DINNER:TANDOORI GRILLED TOFU WITH RED PEPPER AND BROCCOLI SALMON','BREAKFAST:EGG HALF FRY AND SPROUTS	   ,   LUNCH:ALMOND VEGETABLE STIR FRY, CHICKEN SALAD    ,    DINNER:CHICKEN BREAST, ROASTED CHICKEN, TUNA AND CRAB')";
                     stmt.executeUpdate(sql1);
                     sql1 = "INSERT INTO plan(PLAN_NAME,DURATION,AMT,FIRST,SECOND,THIRD)VALUES('HIGH CARBS','1 MONTH',500,'BREAKFAST:PANEER SANDWICH OR TOASTER,PARANTHA	,  LUNCH:ROTI AND PULSES, VEGGIES	, 	DINNER:FRIED CHICKEN WITH A ROTI OR ANY SEA FOOD','BREAKFAST:CHICKENPEAS,OMELLET OR SKIP	 ,   LUNCH:LENTIN,PULSES AND VEGGIES	,  DINNER:BROWN RICE,ROTI AND CHICKEN','BREAKFAST:FRUITS,OATS 	,	LUNCH:	WHITE RICE WITH PULSES,SALADS	,	DINNER:EAT ANYTHING' ) ;";
-                  
+                    }
                     rs = stmt.executeQuery("select * from admin");
                     while(rs.next()){
                         Sendmail2.MyAccount = rs.getString("email").trim();
                         Sendmail2.Password = rs.getString("epass").trim();
                     }  
+                    
                 } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
                     Wrong w = new Wrong(ex.getMessage());
                     w.setVisible(true);
                 }

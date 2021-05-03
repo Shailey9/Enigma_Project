@@ -21,7 +21,7 @@ public class Done extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(700, 400));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
-        jPanel1.setBackground(new java.awt.Color(243, 242, 242));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 204)));
         jPanel1.setLayout(null);
 
@@ -40,11 +40,11 @@ public class Done extends javax.swing.JFrame {
         jLabel5.setText("             Sucessfully Done...");
         jLabel5.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 153, 0)));
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(110, 240, 470, 70);
+        jLabel5.setBounds(110, 280, 470, 70);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\STAR COMPUTER\\Desktop\\rightGIF.gif")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rightGif.gif"))); // NOI18N
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(150, 90, 370, 130);
+        jLabel2.setBounds(-60, 80, 700, 160);
 
         getContentPane().add(jPanel1);
 
